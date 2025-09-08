@@ -9,11 +9,12 @@ def generateAI():
     X=data.iloc[:,:-1].values
     y=data.iloc[:,-1].values
     X=X.reshape(-1,1)
-    X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=0)
+    X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2)
     ai=KNeighborsClassifier(n_neighbors=5)
     ai.fit(X_train,y_train)
 
     y_ai=ai.predict(X_test)
     accuracy_score(y_test,y_ai)
-    pickle.dump(ai,open('ai.pkl'))
+    pickle.dump(ai,open('ai.pkl','wb'))
+
     print("model is created")
